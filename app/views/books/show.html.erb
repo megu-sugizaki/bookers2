@@ -1,2 +1,17 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= flash[:notice] %>
+
+<%= render 'list', book: @book %>
+
+<strong>Book detail</strong>
+
+<%= @book.title %>
+<!--後ほどshowへ飛ぶためのリンクを設定する必要あり-->
+<%= @book.body %>
+
+<%= link_to "Edit", edit_book_path(@book.id) %>
+<% if @book.user == current_user %>
+<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
+<% end %>
+
+
+

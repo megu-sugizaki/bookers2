@@ -1,0 +1,29 @@
+
+
+<!--Users右側部分-->
+<h3>Users</h3>
+<table>
+    <thead>
+    <tr>
+      <th><strong>image</strong></th>
+      <th><strong>name</strong></th>
+      <th> </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td>
+                   <%= image_tag user.get_profile_image(100,100) %>
+                </td>
+                <td>
+                   <%= user.name %></p>
+                </td>
+                <td>
+                   <%= link_to "Show", book_path(user.id)  %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>

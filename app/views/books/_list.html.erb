@@ -1,0 +1,20 @@
+<!--booksのindex,showの右側共通部分テンプレート-->
+
+<h3>User info</h3>
+<%= image_tag current_user.get_profile_image(100,100) %>
+<p>name</p>
+<p><%= current_user.name %></p>
+<p>introduction</p>
+<p><%= current_user.introduction %></p>
+
+<%= link_to "update", edit_user_path(current_user) %>
+
+<!--New bookの部分-->
+ <h3>New book</h3>
+ <%= form_with model: book do |f| %>
+ <h4>Title</h4>
+ <%= f.text_field :title %>
+ <h4>Opinion</h4>
+ <%= f.text_area :body %>
+ <%= f.submit 'Create Book', class: 'btn btn-success' %>
+ <% end %>

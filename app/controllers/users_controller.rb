@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only:[:edit, :update]
   
+
+  
   def index
-    @user = User.all
+    @users = User.all
   end 
   # 今回はユーザーの一覧も作成することになっているようなので、indexを追加。
   
@@ -18,15 +20,20 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user.id)
+    else 
+      render :edit
+    end 
   end 
   # userのshowにリダイレクト
   
   private
   
+  
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end 
   
   def is_matching_login_user
@@ -35,4 +42,5 @@ class UsersController < ApplicationController
       redirect_to book_path
     end 
   end 
+  
 end

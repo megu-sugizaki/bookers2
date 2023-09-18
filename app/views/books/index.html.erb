@@ -1,2 +1,29 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<!--bookers2 index books 画面-->
+<!--投稿に失敗した時のエラーメッセージ-->
+<p><%= flash[:notice] %></p>
+    
+        <% if @book.errors.any? %>
+        <%= @book.errors.count %> errors prohibited this obj from being saved:
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+<!--user infoの部分-->
+<%= render 'list', book: @book %>
+ 
+
+<!--Booksの部分-->
+<h3>Books</h3>
+<% @books.each do |book| %>
+
+<%= image_tag book.user.get_profile_image(100,100) %>
+<strong>Title</strong>
+<%= link_to book.title, book_path(book.id) %>
+<strong>Opinion</strong>
+<p><%= book.body %></p>
+
+<% end %>
+

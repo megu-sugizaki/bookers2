@@ -1,15 +1,22 @@
+# bookers2 books controller
+
 class BooksController < ApplicationController
+  #before_action :authenticate_user!
+  
+  
   def new
     # @book = Book.new
   end
   # 新規投稿機能はindexとshowのページにあるためここには記載不要と思いコメントアウト。
   
   def create
-    @book = Book.find(params[:id])
-    @book.user_id = current_user_id
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
     if @book.save
-      redirect_to book_path
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(@book.id)
     else 
+      flash.now[:notice] 
       render:index
     end 
   end 
@@ -18,7 +25,10 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     # indexページに新規投稿ページがあるのでここにも定義づけを行った。
-    @books = Book.find(params[:id])
+    
+    @books = Book.all
+    # @user = User.find(params[:id])→エラーが出るためコメントアウト。userのプロフィール画像とユーザー名をここに呼び出したい。
+    
   end
   # ページネーション機能の実装は特に要件にないのでこのまま。
 
@@ -41,19 +51,24 @@ class BooksController < ApplicationController
   end
   
   def update
-    book = Book.find(params[:id])
-    book.user_id = current_user_id
+    @book = Book.find(params[:id])
+    @book.user_id = current_user.id
     
-    if book.update(book_params)
-    redirect_to book_path
+    if @book.update(book_params)
+    flash[:notice] = "You have updated book successfully."
+    redirect_to book_path(@book.id)
     else
-    redirect_to edit_book_path
+    flash.now[:notice] 
+    render edit_book_path
     end 
   end 
   # 成功したらshow、失敗したらeditにそのまま
   
   private
+  
+  
   def book_params
-    params.require(:book).permit(:title, :image, :body)
+    params.require(:book).permit(:title, :body)
   end 
+  
 end 
