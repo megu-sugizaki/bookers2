@@ -2,7 +2,7 @@
 
 class BooksController < ApplicationController
   #before_action :authenticate_user!
-  
+   before_action :is_matching_login_user, only:[:edit, :update]
   
   def new
     # @book = Book.new
@@ -29,6 +29,7 @@ class BooksController < ApplicationController
     
     @books = Book.all
     # @user = User.find(params[:id])→エラーが出るためコメントアウト。userのプロフィール画像とユーザー名をここに呼び出したい。
+    
   end
   # ページネーション機能の実装は特に要件にないのでこのまま。
 
@@ -36,6 +37,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     # showページに新規投稿ページがあるのでここにも定義づけを行った。
     @book = Book.find(params[:id])
+    @user = @book.user
   end
   # コメント機能はなし。
   
@@ -59,7 +61,7 @@ class BooksController < ApplicationController
     redirect_to book_path(@book.id)
     else
     flash.now[:notice] 
-    render edit_book_path
+    render :edit
     end 
   end 
   # 成功したらshow、失敗したらeditにそのまま
@@ -70,5 +72,12 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end 
+  
+    def is_matching_login_user
+    book = Book.find(params[:id])
+    unless book.user.id == current_user.id
+      redirect_to books_path
+    end 
+    end 
   
 end 

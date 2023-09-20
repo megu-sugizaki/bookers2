@@ -1,22 +1,22 @@
 <!--booksのindex,showの右側共通部分テンプレート-->
 
 <h2>User info</h2>
-<%= image_tag current_user.get_profile_image(100,100) %>
+<%= image_tag user.get_profile_image(100,100) %>
 <table class="table table-hover table-inverse">
 <tr>
 <th>name</th>
-<td><strong><%= current_user.name %></strong></td>
+<td><strong><%= user.name %></strong></td>
 </tr>
 <tr>
 <th>introduction</th>
-<td><strong><%= current_user.introduction %></strong></td>
+<td><strong><%= user.introduction %></strong></td>
 </tr>
 </table>
 
 <div class="row">
-<%= link_to edit_user_path(current_user), class: 'btn btn-outline-secondary btn-block' do %>
-<i class="fa-solid fa-user-gear"></i>
-<% end %>
+  <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
 </div>
 
 <!--New bookの部分-->
