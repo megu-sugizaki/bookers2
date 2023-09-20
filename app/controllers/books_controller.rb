@@ -12,12 +12,13 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    @books = Book.all
     if @book.save
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
     else 
       flash.now[:notice] 
-      render:index
+      render :index
     end 
   end 
   # 成功したらshowページへ、失敗したらindexページへ。
@@ -28,12 +29,11 @@ class BooksController < ApplicationController
     
     @books = Book.all
     # @user = User.find(params[:id])→エラーが出るためコメントアウト。userのプロフィール画像とユーザー名をここに呼び出したい。
-    
   end
   # ページネーション機能の実装は特に要件にないのでこのまま。
 
   def show
-    @book = Book.new
+    @book_new = Book.new
     # showページに新規投稿ページがあるのでここにも定義づけを行った。
     @book = Book.find(params[:id])
   end
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
   
   def destroy
     book = Book.find(params[:id])
-    book = book.destroy
+    book.destroy
     redirect_to books_path
   end 
     # リダイレクト先はindex

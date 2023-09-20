@@ -5,12 +5,14 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @book = Book.new
   end 
   # 今回はユーザーの一覧も作成することになっているようなので、indexを追加。
   
   def show
     @user = User.find(params[:id])
     @book = @user.books
+    @book_new = Book.new
     # @bookに関しては、アソシエーションのために記述。@userに関連づけられた投稿全て(.books)を取得し個人が投稿したもの全てを表示可能となる。
   end
 
@@ -24,6 +26,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else 
+      flash.now[:notice]
       render :edit
     end 
   end 

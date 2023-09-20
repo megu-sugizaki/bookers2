@@ -19,7 +19,7 @@
       <div class="container">
         
       <li class="navbar-brand p-3">
-       <%= link_to "Bookers", new_user_registration_path, class: 'text-light' %>
+       <%= link_to "Bookers", root_path, class: 'text-light' %>
       </li> 
       
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
         
       <% else %>
       <li class="nav-item">
-        <%= link_to homes_top_path, class: 'nav-link text-light' do %>
+        <%= link_to root_path, class: 'nav-link text-light' do %>
         <i class="fas fa-home"></i> Home
         <% end %>
         <!--ログインしていなかったら、Homeボタンを押すとトップ画面に遷移-->
@@ -86,6 +86,8 @@
       </div>  
     </nav>
     </header>
+    
+    <p><%= flash[:notice] %></p>
     
     <main>
     <%= yield %>
