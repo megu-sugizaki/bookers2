@@ -15,76 +15,75 @@
 
   <body　class="d-flex flex-column vh-100">
     <header>
-    <nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container">
-        
-      <li class="navbar-brand p-3">
-       <%= link_to "Bookers", root_path, class: 'text-light' %>
-      </li> 
-      
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-
-      <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
-          <i class="fas fa-home"></i> Home
-        <% end %>
-          <!--ログインしている場合、Homeボタンを押すとトップ画面に遷移-->
-          </li>
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container">
+          <li class="navbar-brand p-3">
+           <%= link_to "Bookers", root_path, class: 'text-light' %>
+          </li> 
           
-      <li class="nav-item">
-        <%= link_to users_path, class: 'nav-link text-light' do %>
-          <i class="fa-solid fa-users"></i> Users
-        <% end %> 
-        <!--ログインしている場合、usersのindex画面へ遷移-->
-      </li>
-      <li class="nav-item">
-        <%= link_to books_path, class: 'nav-link text-light' do %>
-        <i class="fa-solid fa-book-open"></i> Books
-        <% end %>
-        <!--ログインしている場合、booksのindex画面へ遷移-->
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
-        <i class="fas fa-sign-out-alt"></i> Log out
-        <% end %>
-        <!--ログインしている場合、ログアウトを行う。-->
-          </li>
-        
-      <% else %>
-      <li class="nav-item">
-        <%= link_to root_path, class: 'nav-link text-light' do %>
-        <i class="fas fa-home"></i> Home
-        <% end %>
-        <!--ログインしていなかったら、Homeボタンを押すとトップ画面に遷移-->
-      </li>
-      <li class="nav-item">
-        <%= link_to about_home_path, class: 'nav-link text-light' do %>
-        <i class="fa-solid fa-link"></i> About
-        <% end %>
-       <!--ログインしていない場合、Aboutページに遷移-->
-      </li>
-      <li class="nav-item">
-        <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
-        <i class="fa-solid fa-user-plus"></i> Sign up
-        <% end %>
-       <!--ログインしていない場合、Sign upページに遷移-->
-      </li>
-      <li class="nav-item">
-        <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
-        <i class="fas fa-sign-in-alt"></i> Log in
-        <% end %>
-       <!--ログインしていない場合、Sign inページ（POSTではなくGETの方）に遷移-->
-      </li>
-      <% end %>
-      </ul>
-      </div>
-      </div>  
-    </nav>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+    
+              <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+                  <!--ログインしている場合、Homeボタンを押すとトップ画面に遷移-->
+              </li>
+                  
+              <li class="nav-item">
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-users"></i> Users
+                <% end %> 
+                <!--ログインしている場合、usersのindex画面へ遷移-->
+              </li>
+              <li class="nav-item">
+                <%= link_to books_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-book-open"></i> Books
+                <% end %>
+                <!--ログインしている場合、booksのindex画面へ遷移-->
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-out-alt"></i> Log out
+                <% end %>
+                <!--ログインしている場合、ログアウトを行う。-->
+              </li>
+                
+              <% else %>
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+                <!--ログインしていなかったら、Homeボタンを押すとトップ画面に遷移-->
+              </li>
+              <li class="nav-item">
+                <%= link_to about_home_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-link"></i> About
+                <% end %>
+               <!--ログインしていない場合、Aboutページに遷移-->
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-user-plus"></i> Sign up
+                <% end %>
+               <!--ログインしていない場合、Sign upページに遷移-->
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-in-alt"></i> Log in
+                <% end %>
+               <!--ログインしていない場合、Sign inページ（POSTではなくGETの方）に遷移-->
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>  
+      </nav>
     </header>
     
     <p><%= flash[:notice] %></p>
@@ -92,15 +91,16 @@
     <main>
     <%= yield %>
     </main>
+    
   </body>
   
   <footer>
     <div class="container mt-5">
-    <div class="row">
-      <div class="mx-auto">
-      <p>CopyRight Infratop.inc</p>
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+        </div>
       </div>
-    </div>
     </div>
   </footer>
 </html>

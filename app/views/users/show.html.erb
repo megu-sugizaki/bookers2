@@ -1,20 +1,18 @@
 <!--users show 左側部分-->
 <div class="container px-5 px-sm-0">
  <div class="row">    
-    
     <div class="col-md-3">
-        
         <h2>User info</h2>
-        <%= image_tag @user.get_profile_image(100,100) %>
+            <%= image_tag @user.get_profile_image(100,100) %>
         <table class="table table-hover table-inverse">
-        <tr>
-        <th>name</th>
-        <td><strong><%= @user.name %></strong></td>
-        </tr>
-        <tr>
-        <th>introduction</th>
-        <td><strong><%= @user.introduction %></strong></td>
-        </tr>
+            <tr>
+                <th>name</th>
+                <td><strong><%= @user.name %></strong></td>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <td><strong><%= @user.introduction %></strong></td>
+            </tr>
         </table>
         
         <div class="row">
@@ -27,38 +25,38 @@
     </div>
 
 <!--users show 右側部分-->
-<div class="col-md-8 offset-md-1">
-<h3>Books</h3>
-<table class="table table-hover table-inverse">
-    <thead>
-    <tr>
-      <th><strong>Title</strong></th>
-      <th><strong>Opinion</strong></th>
-      <th> </th>
-    </tr>
-    </thead>
-    <tbody>
-        <% @user.books.each do |book| %>
+    <div class="col-md-8 offset-md-1">
+        <h3>Books</h3>
+        <table class="table table-hover table-inverse">
+            <thead>
             <tr>
-                <td>
-                   <%= link_to user_path(@user.id) do %>    
-                   <%= image_tag @user.get_profile_image(100,100) %>
-                   <% end %>
-                </td>
-                <td>
-                   <%= link_to book_path(book.id) do %>
-                   <%= book.title %>
-                   <% end %>
-                </td>
-                <td>
-                   <%= book.body  %>
-                </td>
+              <th><strong>Title</strong></th>
+              <th><strong>Opinion</strong></th>
+              <th> </th>
             </tr>
-        <% end %>
-    </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% @user.books.each do |book| %>
+                    <tr>
+                        <td>
+                           <%= link_to user_path(@user.id) do %>    
+                           <%= image_tag @user.get_profile_image(100,100) %>
+                           <% end %>
+                        </td>
+                        <td>
+                           <%= link_to book_path(book.id) do %>
+                           <%= book.title %>
+                           <% end %>
+                        </td>
+                        <td>
+                           <%= book.body  %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
     
-  </div>
  </div>    
 </div>
 

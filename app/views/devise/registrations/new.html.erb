@@ -2,45 +2,46 @@
 
 <div class="continer">
   <div class="row ml-3 mt-3">
-      <div class="col-md-1.5">
+    <div class="col-md-1.5">
     
           <h2>Sign up</h2>
           
           <%= form_with model: @user, url: user_registration_path do |f| %>
+            
             <%= render "devise/shared/error_messages", resource: resource %>
             
             <div class="form-group">
-            <div class="field">
-              <label for="user_name">Name</label>
-              <br>
-              <%= f.text_field :name, autofocus: true, class:"form-control", id:"user_name" %>
-            </div>
-            </div>
-            
-            <div class="form-group">
-            <div class="field">
-              <label for="user_email">Email</label>
-              <br>
-              <%= f.email_field :email, autofocus: true, class:"form-control", id:"user_email" %>
-            </div>
+              <div class="field">
+                <label for="user_name">Name</label>
+                <br>
+                <%= f.text_field :name, autofocus: true, class:"form-control", id:"user_name" %>
+              </div>
             </div>
             
             <div class="form-group">
-            <div class="field">
-              <label for="user_password">Password</label>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"user_password" %>
-            </div>
+              <div class="field">
+                <label for="user_email">Email</label>
+                <br>
+                <%= f.email_field :email, autofocus: true, class:"form-control", id:"user_email" %>
+              </div>
             </div>
             
             <div class="form-group">
-            <div class="field">
-              <label for="user_password_confirmation">Password confirmation</label>
-              <br>
-              <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"user_password_confirmation" %>
+              <div class="field">
+                <label for="user_password">Password</label>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"user_password" %>
+              </div>
             </div>
+            
+            <div class="form-group">
+              <div class="field">
+                <label for="user_password_confirmation">Password confirmation</label>
+                <br>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"user_password_confirmation" %>
+              </div>
             </div>
           
             <div class="actions">
@@ -50,8 +51,6 @@
           
           <!--data-disable-with→誤操作の2回クリック防止-->
           <!--value→ボタンの中に入っている値-->
-          
-          
           <%= render "devise/shared/links" %>
     </div>
   </div>
